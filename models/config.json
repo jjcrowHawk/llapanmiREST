@@ -1,0 +1,8 @@
+{
+    "mongo": {
+        "db": "llapanmi-db",
+        "host": "ds157599.mlab.com:57599",
+        "user": "admin",
+        "password": "admin123"
+    }
+}

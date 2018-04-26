@@ -1,5 +1,27 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1.title Rest API For LLapanmi
+    div
+      h3 Preguntas
+      ul.links-container
+        li.api-links 
+          a(href="/questions/ver") Ver preguntas
+        li.api-links 
+          a(href="/questions/agregar") Agregar preguntas
+        li.api-links 
+          a(href="/questions/editar") Editar preguntas
+        li.api-links 
+          a(href="/questions/eliminar") Eliminar preguntas
+    
+    div
+      h3 Usuarios
+      ul.links-container
+        li.api-links 
+          a(href="/users/ver") Ver usuarios
+        li.api-links 
+          a(href="/users/agregar") Agregar usuarios
+        li.api-links 
+          a(href="/users/editar") Editar usuarios
+        li.api-links 
+          a(href="/users/eliminar") Eliminar usuarios
