@@ -2,9 +2,11 @@
 const formidable = require('formidable'),
     util = require('util');
 const QuestionModel = require('../models/questionModel');
+const CategoryModel = require('../models/categoryModel');
 const qm = new QuestionModel();
+const cm = new CategoryModel();
 
-class QuestionController {
+class apiController {
 
     getAll(req, res, next) {
         qm.getAll((docs) => {
@@ -25,7 +27,6 @@ class QuestionController {
             if (err) {
                 console.log(err);
             } else {
-                console.log("Its doing something!!!!!!!!");
                 qm.save({ "fields": fields, "files": files }, (result) => {
                     console.log("QUESTION HAS BEEN CREATED!");
                     res.json(result);
@@ -41,6 +42,27 @@ class QuestionController {
             console.log("QUESTION DELETED!");
         })
     }
+
+    getAllCategories(req, res, next) {
+        cm.getAllCategories((data) => {
+            res.json(data);
+        });
+    }
+
+    getCategoryByName(req, res, next) {
+        var name = req.params.name;
+        cm.getCategoryByName(name, (data) => {
+            res.json(data);
+        });
+    }
+
+    getSingleCategory(req, res, next) {
+        var id = req.params.id;
+        cm.getSingleCategory(id, (data) => {
+            res.json(data);
+        });
+    }
 }
 
-module.exports = QuestionController;
+
+module.exports = apiController;

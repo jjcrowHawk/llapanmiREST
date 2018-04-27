@@ -5,8 +5,11 @@ block content
     div.question-create-section
         form(action="/api/question", method="post", enctype="multipart/form-data").question-create-form
             div
-                label(for="area") Área: 
-                input(type="text",required,  id="area",name="area",placeholder="Ingrese el area de la pregunta: ciencia,lógica,acertijos,matemáticas")
+                label(for="area") Categoria:
+                select(name="categoria",id="area",required)
+                    each cat in categories
+                        option(value=cat._id) #{cat.nombre}  
+                //input(type="text",required,  id="area",name="area",placeholder="Ingrese el area de la pregunta: ciencia,lógica,acertijos,matemáticas")
             div
                 label(for="pregunta") Pregunta:
                 input(type="text",required, id="pregunta",name="pregunta",placeholder="Ingrese la pregunta")

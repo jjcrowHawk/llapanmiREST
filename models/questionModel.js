@@ -1,7 +1,10 @@
 'use strict';
-const conn = require('./schema'),
+const conn = require('./schema').Question,
     mongoose = require('./connection').mongoose,
-    fs = require('fs');
+    fs = require('fs'),
+    path = require("path");
+const CategoryModel = require('./categoryModel'),
+    cm = new CategoryModel();
 
 var GridFile;
 
@@ -35,30 +38,55 @@ class QuestionModel {
 
 
     save(data, callback) {
+        console.log(data);
         conn.count({ _id: data._id }, (err, count) => {
             if (err)
                 throw err;
             console.log(`Número de Docs: ${count}`);
 
             if (count == 0) {
-                GridFile.write({
-                        filename: data.files.imagen.name,
-                        contentType: data.files.imagen.type
-                    },
-                    fs.createReadStream(data.files.imagen.path),
-                    function(error, createdFile) {
-                        if (error) {
-                            console.log(error);
-                        }
-                        console.log(createdFile);
-                        data.fields['imagen'] = createdFile._id;
-                        conn.create(data.fields, (err, result) => {
-                            if (err)
-                                throw err;
-                            callback(result);
+                if (data.files.imagen.name != '' && data.files.imagen.size != 0) {
+
+                    //uploading image to server public dir
+                    cm.getSingleCategory(data.fields.categoria, (cat) => {
+                        console.log("this cat: \n" + JSON.stringify(cat));
+                        var categoria = cat[0].nombre;
+                        console.log("cat name: " + categoria);
+                        var targetPath = path.resolve(`./public/images/${categoria}/${data.files.imagen.name}`);
+                        console.log(targetPath);
+                        fs.rename(data.files.imagen.path, targetPath, function(err) {
+                            if (err) throw err;
+                            console.log("Upload completed!");
                         });
-                    }
-                );
+                    });
+
+                    //write image to db 
+                    GridFile.write({
+                            filename: data.files.imagen.name,
+                            contentType: data.files.imagen.type
+                        },
+                        fs.createReadStream(data.files.imagen.path),
+                        function(error, createdFile) {
+                            if (error) {
+                                console.log(error);
+                            }
+                            console.log(createdFile);
+                            data.fields['imagen'] = createdFile._id;
+                            data.fields['nombre_imagen'] = data.files.imagen.name;
+                            conn.create(data.fields, (err, result) => {
+                                if (err)
+                                    throw err;
+                                callback(result);
+                            });
+                        }
+                    );
+                } else {
+                    conn.create(data.fields, (err, result) => {
+                        if (err)
+                            throw err;
+                        callback(result);
+                    });
+                }
             } else if (count == 1) {
                 /*conn.findOneAndUpdate({ _id: data._id }, {
                         name: data.name,
