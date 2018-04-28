@@ -1,0 +1,39 @@
+extends layout
+
+block content
+    h1.title Eliminar Preguntas
+    div.question-list-section
+        each q in questions
+            div.question-container
+                div.title-container
+                    span
+                        h4.question-title #{q.pregunta}
+                    span
+                        a(href="/question/" + q._id,class="del_button") Eliminar
+                table
+                    tr
+                        td Respuesta:
+                        td #{q.respuesta_correcta}
+                    tr
+                        td Respuesta Alternativa 1:
+                        td #{q.respuesta1}
+                    tr
+                        td Respuesta Alternativa 2:
+                        td #{q.respuesta2}
+                    tr
+                        td Respuesta Alternativa 3:
+                        td #{q.respuesta3}
+                    tr
+                        td Respuesta Alternativa 4:
+                        td #{q.respuesta4}
+                    tr
+                        td Explicación:
+                        td #{q.explicacion}
+                    tr
+                        td Categoría:
+                        td #{q.nom_categoria}
+                    if q.nombre_imagen
+                        tr
+                            td Imagen:
+                            td #[img(src="/images/"+q.nom_categoria + "/" + q.nombre_imagen)]
+    script(src="/javascripts/question_delete.js")

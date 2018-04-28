@@ -8,7 +8,7 @@ router
     .get("/question", ac.getAll)
     .get("/question/:id", ac.getSingle)
     .post("/question", ac.createQuestion)
-    .put("/question/:id", ac.createQuestion)
+    .put("/question", ac.createQuestion)
     .delete("/question/:id", ac.delete)
     //REST methods for categories
     .get("/category", ac.getAllCategories)

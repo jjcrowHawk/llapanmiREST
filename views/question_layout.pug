@@ -1,0 +1,70 @@
+extends layout
+
+block content
+    div.question-container
+        div.title-container
+                h4.question-title #{question.pregunta}
+        table
+            tr
+                td Respuesta:
+                td #{question.respuesta_correcta}
+            tr
+                td Respuesta Alternativa 1:
+                td #{question.respuesta1}
+            tr
+                td Respuesta Alternativa 2:
+                td #{question.respuesta2}
+            tr
+                td Respuesta Alternativa 3:
+                td #{question.respuesta3}
+            tr
+                td Respuesta Alternativa 4:
+                td #{question.respuesta4}
+            tr
+                td Explicación:
+                td #{question.explicacion}
+            tr
+                td Categoría:
+                td #{question.nom_categoria}
+            if question.nombre_imagen
+                tr
+                    td Imagen:
+                    td #[img(src="/images/"+question.nom_categoria + "/" + question.nombre_imagen)]
+
+    div.question-edit-section
+        form(id="questionForm", enctype="multipart/form-data").question-edit-form
+            input(type="hidden", name="id",value=question._id)
+            div
+                label(for="area") Categoria:
+                select(name="categoria",id="area",required)
+                    option(value=question.categoria, selected) #{question.nom_categoria}
+                    each cat in categories
+                        option(value=cat._id) #{cat.nombre}  
+            div
+                label(for="pregunta") Pregunta:
+                input(type="text",required, id="pregunta",name="pregunta",placeholder="Ingrese la pregunta", value= question.pregunta)
+            div
+                label(for="respuesta_correcta") Respuesta Correcta:
+                input(type="text",required, id="respuesta_correcta",name="respuesta_correcta",placeholder="Ingrese  la respuesta correcta",value=question.respuesta_correcta)
+            div
+                label(for="respuesta1") Respuesta Alternativa 1:
+                input(type="text",required, id="respuesta1",name="respuesta1",placeholder="Ingrese la primera respuesta alternativa ",value= question.respuesta1)
+            div
+                label(for="respuesta2") Respuesta Alternativa 2:
+                input(type="text",required, id="respuesta2",name="respuesta2",placeholder="Ingrese la segunda respuesta alternativa",value= question.respuesta2)
+            div
+                label(for="respuesta3") Respuesta Alternativa 3:
+                input(type="text",id="respuesta3",name="respuesta3",placeholder="Ingrese la tercera respuesta alternativa",value= question.respuesta3)
+            div
+                label(for="respuesta4") Respuesta Alternativa 4:
+                input(type="text",id="respuesta4",name="respuesta4",placeholder="Ingrese la cuarta respuesta alternativa",value= question.respuesta4)
+            div
+                label(for="imagen")
+                input(type="file", name="imagen",id="imagen", accept="image/*")
+            div
+                label(for="explicacion") Explicación: 
+                textarea(name="explicacion", id="explicacion", placeholder="Ingrese la explicación", cols="30", rows="10") #{question.explicacion}
+            div
+                input(type="submit", value="Editar Pregunta")
+
+    script(src="/javascripts/question_put.js")

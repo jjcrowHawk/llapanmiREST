@@ -38,8 +38,8 @@ class apiController {
 
     delete(req, res, next) {
         var id = req.params.id;
-        qm.delete(id, () => {
-            console.log("QUESTION DELETED!");
+        qm.delete(id, (data) => {
+            res.json(data);
         })
     }
 
