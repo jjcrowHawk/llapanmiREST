@@ -1,27 +1,32 @@
 extends layout
 
 block content
-  h1.title Rest API For LLapanmi
-    div
-      h3 Preguntas
-      ul.links-container
-        li.api-links 
-          a(href="/questions/ver") Ver preguntas
-        li.api-links 
-          a(href="/questions/agregar") Agregar preguntas
-        li.api-links 
-          a(href="/questions/editar") Editar preguntas
-        li.api-links 
-          a(href="/questions/eliminar") Eliminar preguntas
-    
-    div
-      h3 Usuarios
-      ul.links-container
-        li.api-links 
-          a(href="/users/ver") Ver usuarios
-        li.api-links 
-          a(href="/users/agregar") Agregar usuarios
-        li.api-links 
-          a(href="/users/editar") Editar usuarios
-        li.api-links 
-          a(href="/users/eliminar") Eliminar usuarios
+  h3.title Rest API For LLapanmi
+  
+  div.card-panel
+    h4 Preguntas
+    ul.links-container
+      li.api-links.hoverable 
+        a(href="/questions/ver") Ver preguntas
+          i.material-icons.left done
+      li.api-links.hoverable
+        a(href="/questions/agregar") Agregar preguntas
+          i.material-icons.left note_add
+      li.api-links.hoverable
+        a(href="/questions/editar") Editar preguntas
+          i.material-icons.left edit
+      li.api-links.hoverable
+        a(href="/questions/eliminar") Eliminar preguntas
+          i.material-icons.left delete
+  
+  div.card-panel
+    h4 Usuarios
+    ul.links-container
+      li.api-links.hoverable 
+        a(href="/users/ver") Ver usuarios
+      li.api-links.hoverable 
+        a(href="/users/agregar") Agregar usuarios
+      li.api-links.hoverable 
+        a(href="/users/editar") Editar usuarios
+      li.api-links.hoverable 
+        a(href="/users/eliminar") Eliminar usuarios

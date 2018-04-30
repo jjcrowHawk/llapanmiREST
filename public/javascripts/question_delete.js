@@ -8,9 +8,9 @@ function deleteQuestion(e) {
     var form = document.querySelector("#questionForm");
     var data = new FormData(form);
     axios.delete("/api" + url).then((res) => {
-        console.log("SUCCESFULL DELETE!");
-        console.log(res);
+        M.toast({ html: 'El elemento ha sido eliminado correctamente!' });
+        location.href = "/questions/eliminar";
     }).catch((err) => {
-        console.log(err);
+        M.toast({ html: 'Ha ocurrido un error al realizar la petición, vuelve a intentar' });
     });
 }

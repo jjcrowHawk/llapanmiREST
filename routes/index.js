@@ -6,7 +6,7 @@ const QuestionModel = require('../models/questionModel');
 const qm = new QuestionModel();
 /* GET home page. */
 router.get('/home', function(req, res, next) {
-    res.render('index', { title: 'Express' });
+    res.render('index', { title: 'Express', 'index': true });
 });
 
 router.get('/questions/ver', function(req, res, next) {
@@ -18,7 +18,7 @@ router.get('/questions/ver', function(req, res, next) {
                 console.log(element.nom_categoria)
                 if (element == data[data.length - 1]) {
                     console.log("the last one!");
-                    res.render('question_list', { 'questions': data });
+                    res.render('question_list', { 'questions': data, 'question_list': true });
 
                 }
             })
@@ -29,7 +29,7 @@ router.get('/questions/ver', function(req, res, next) {
 router.get('/questions/agregar', function(req, res, next) {
     cm.getAllCategories((data) => {
         console.log(data);
-        res.render('question_create', { 'categories': data });
+        res.render('question_create', { 'categories': data, 'question_create': true });
     });
 });
 
@@ -42,7 +42,7 @@ router.get('/questions/editar', function(req, res, next) {
                 console.log(element.nom_categoria)
                 if (element == data[data.length - 1]) {
                     console.log("the last one!");
-                    res.render('question_edit', { 'questions': data });
+                    res.render('question_edit', { 'questions': data, 'question_list': true });
 
                 }
             })
@@ -59,7 +59,7 @@ router.get('/questions/eliminar', function(req, res, next) {
                 console.log(element.nom_categoria)
                 if (element == data[data.length - 1]) {
                     console.log("the last one!");
-                    res.render('question_delete', { 'questions': data });
+                    res.render('question_delete', { 'questions': data, 'question_list': true });
 
                 }
             })
@@ -77,7 +77,7 @@ router.get('/questions/:id', function(req, res, next) {
                 console.log(cats + "\ncount:" + cats.length);
                 cats = cats.filter((category) => category.nombre !== question.nom_categoria);
                 console.log(cats + "\ncount:" + cats.length);
-                res.render('question_layout', { 'question': question, 'categories': cats });
+                res.render('question_layout', { 'question': question, 'categories': cats, 'question_layout': true });
             });
         });
     });

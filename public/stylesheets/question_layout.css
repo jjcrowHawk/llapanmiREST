@@ -1,0 +1,59 @@
+section {
+    margin-left: 3%;
+}
+
+.question-container {
+    margin-right: 3%;
+    margin-top: 3%;
+    margin-bottom: 5%;
+}
+
+.question-title {
+    margin-top: 0%;
+    margin-bottom: 3%;
+    font-weight: bold;
+}
+
+tr td:nth-of-type(1) {
+    font-weight: bold;
+}
+
+td img {
+    width: 25%;
+}
+
+
+/*CSS FOR EDIT FORM*/
+
+div.question-edit-section {
+    margin-right: 3%;
+    margin-top: 3%;
+    margin-bottom: 5%;
+    background-color: #fafafa;
+    border-radius: 2%;
+}
+
+label {
+    display: block;
+    margin: 1% 0%;
+    font-size: 1.25em;
+    font-weight: bold;
+}
+
+input {
+    margin-bottom: 2% !important;
+}
+
+.btn {
+    display: block;
+    margin: 4% auto;
+    width: 40%;
+}
+
+
+/*MODAL CONTENT*/
+
+.modal-content img {
+    display: block;
+    margin: 2% auto;
+}

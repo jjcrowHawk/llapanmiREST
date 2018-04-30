@@ -1,38 +1,45 @@
 extends layout
 
 block content
-    h1.title Crear Pregunta
-    div.question-create-section
-        form(action="/api/question", method="post", enctype="multipart/form-data").question-create-form
-            div
-                label(for="area") Categoria:
-                select(name="categoria",id="area",required)
-                    each cat in categories
-                        option(value=cat._id) #{cat.nombre}  
-                //input(type="text",required,  id="area",name="area",placeholder="Ingrese el area de la pregunta: ciencia,lógica,acertijos,matemáticas")
-            div
-                label(for="pregunta") Pregunta:
-                input(type="text",required, id="pregunta",name="pregunta",placeholder="Ingrese la pregunta")
-            div
-                label(for="respuesta_correcta") Respuesta Correcta:
-                input(type="text",required, id="respuesta_correcta",name="respuesta_correcta",placeholder="Ingrese  la respuesta correcta")
-            div
-                label(for="respuesta1") Respuesta Alternativa 1:
-                input(type="text",required, id="respuesta1",name="respuesta1",placeholder="Ingrese la primera respuesta alternativa ")
-            div
-                label(for="respuesta2") Respuesta Alternativa 2:
-                input(type="text",required, id="respuesta2",name="respuesta2",placeholder="Ingrese la segunda respuesta alternativa")
-            div
-                label(for="respuesta3") Respuesta Alternativa 3:
-                input(type="text",id="respuesta3",name="respuesta3",placeholder="Ingrese la tercera respuesta alternativa")
-            div
-                label(for="respuesta4") Respuesta Alternativa 4:
-                input(type="text",id="respuesta4",name="respuesta4",placeholder="Ingrese la cuarta respuesta alternativa")
-            div
-                label(for="imagen")
-                input(type="file", name="imagen",id="imagen", accept="image/*")
-            div
-                label(for="explicacion") Explicación: 
-                textarea(name="explicacion", id="explicacion", placeholder="Ingrese la explicación", cols="30", rows="10")
-            div
-                input(type="submit", value="Crear Pregunta")
+    section
+        h2.title Crear Pregunta
+        div.question-create-section.card-panel
+            form(id="questionForm", enctype="multipart/form-data").question-create-form
+                div
+                    label(for="area") Categoria:
+                    select(name="categoria",id="area",required)
+                        each cat in categories
+                            option(value=cat._id) #{cat.nombre}  
+                    //input(type="text",required,  id="area",name="area",placeholder="Ingrese el area de la pregunta: ciencia,lógica,acertijos,matemáticas")
+                div
+                    label(for="pregunta") Pregunta:
+                    input(type="text",required, id="pregunta",name="pregunta",placeholder="Ingrese la pregunta")
+                div
+                    label(for="respuesta_correcta") Respuesta Correcta:
+                    input(type="text",required, id="respuesta_correcta",name="respuesta_correcta",placeholder="Ingrese  la respuesta correcta")
+                div
+                    label(for="respuesta1") Respuesta Alternativa 1:
+                    input(type="text",required, id="respuesta1",name="respuesta1",placeholder="Ingrese la primera respuesta alternativa ")
+                div
+                    label(for="respuesta2") Respuesta Alternativa 2:
+                    input(type="text",required, id="respuesta2",name="respuesta2",placeholder="Ingrese la segunda respuesta alternativa")
+                div
+                    label(for="respuesta3") Respuesta Alternativa 3:
+                    input(type="text",id="respuesta3",name="respuesta3",placeholder="Ingrese la tercera respuesta alternativa")
+                div
+                    label(for="respuesta4") Respuesta Alternativa 4:
+                    input(type="text",id="respuesta4",name="respuesta4",placeholder="Ingrese la cuarta respuesta alternativa")
+                div
+                    label(for="imagen") Imagen (opcional):
+                    input(type="file", name="imagen",id="imagen", accept="image/*")
+                div
+                    label(for="explicacion") Explicación: 
+                    textarea(class="materialize-textarea" name="explicacion", id="explicacion", placeholder="Ingrese la explicación", cols="30", rows="10")
+                div
+                    input(class="btn" type="submit", value="Crear Pregunta")
+        
+    div.fixed-action-btn
+        a.btn-floating.btn-large.red(href="/home")
+            i.large.material-icons arrow_left
+    
+    script(src="/javascripts/question_post.js")

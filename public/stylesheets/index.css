@@ -1,0 +1,28 @@
+h3.title {
+    margin-left: 3%;
+    margin-bottom: 4%;
+}
+
+div.card-panel {
+    border-radius: 2%;
+    background-color: #fafafa;
+    padding-top: 0.25%;
+    padding-bottom: 0.25%;
+    margin: 2% 3%;
+}
+
+a {
+    font-size: 2rem;
+    vertical-align: bottom;
+    margin-left: 2%;
+}
+
+li {
+    margin: 3% 0%;
+    vertical-align: bottom
+}
+
+.material-icons {
+    font-size: 3rem !important;
+    line-height: auto !important;
+}

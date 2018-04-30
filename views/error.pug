@@ -1,6 +1,12 @@
 extends layout
 
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+
+  section(style="margin: 5%")
+    h1 Error 404
+    h3 Opps!
+    div
+      p Parece que el contenido que buscas no está disponible o no existe!
+  //h1= message
+  //h2= error.status
+  ///pre #{error.stack}

@@ -1,12 +1,12 @@
-document.querySelector("#questionForm").addEventListener('submit', updateQuestion);
+document.querySelector("#questionForm").addEventListener('submit', postQuestion);
 
-function updateQuestion(e) {
+function postQuestion(e) {
     e.preventDefault();
     var form = document.querySelector("#questionForm");
     var data = new FormData(form);
-    axios.put("/api/question", data).then((res) => {
+    axios.post("/api/question", data).then((res) => {
         console.log("SUCCESFULL UPDATE!");
-        M.toast({ html: 'Datos guardados correctamente' })
+        M.toast({ html: 'Datos creados correctamente' })
         location.href = "/questions/" + res.data._id;
     }).catch((err) => {
         M.toast({ html: 'Ocurrio un error durante la petición,vuelva a intentar' })

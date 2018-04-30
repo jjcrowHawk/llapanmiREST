@@ -2,8 +2,34 @@ doctype html
 html
   head
     title= title
+    link(rel="stylesheet", href="/stylesheets/materialize.min.css")
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+    if index
+      link(rel="stylesheet", href="/stylesheets/index.css")
+    if question_list
+      link(rel="stylesheet", href="/stylesheets/question_list.css")
+    if question_create
+      link(rel="stylesheet", href="/stylesheets/question_create.css")
+    if question_layout
+      link(rel="stylesheet", href="/stylesheets/question_layout.css")
+
+  body
+    div.navbar-fixed
+      nav
+        div.nav-wrapper
+          a.brand-logo(href='/home') Llapanmi REST
+          ul.right.hide-on-med-and-down
+
+    block content
+    
+    footer.footer-copyright
+      div.container
+        p.center © All rights Reserved
+    
     script(src="https://cdn.jsdelivr.net/npm/vue")
     script(src="https://unpkg.com/axios/dist/axios.min.js")
-  body
-    block content
+    script(src="/javascripts/materialize.min.js")
+    script(src="/javascripts/material_init.js")
+    script(src="/javascripts/modal_loader.js")
+
